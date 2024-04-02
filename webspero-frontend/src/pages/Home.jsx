@@ -10,7 +10,6 @@ import { Link } from "react-router-dom";
 export default function Home() {
   const dispatch = useDispatch();
   const nearest = useSelector(nearestUsersSelector);
-  console.log({ nearest });
 
   React.useEffect(() => {
     console.log("sasas");

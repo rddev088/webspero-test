@@ -4,10 +4,20 @@ import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Container } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getUser,
+  nearestUsersSelector,
+  updateUser,
+} from "../features/userSlice";
 
 export default function UpdateProfile() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = useSelector(nearestUsersSelector);
+
   const [formData, setFormData] = React.useState({
     name: "",
     email: "",
@@ -18,6 +28,25 @@ export default function UpdateProfile() {
     profilePic: null, // Use null to store the selected file
   });
   const [errors, setErrors] = React.useState({});
+
+  React.useEffect(() => {
+    dispatch(getUser());
+  }, []);
+
+  React.useEffect(() => {
+    if (user?.success) {
+      setFormData({
+        ...user?.user?.data,
+        profilePic: null,
+      });
+    }
+  }, [user?.success, user?.user]);
+
+  React.useEffect(() => {
+    if (user?.updated) {
+      dispatch(getUser());
+    }
+  }, [user?.updated]);
 
   const handleChange = (e) => {
     if (e.target.name === "profilePic") {
@@ -31,12 +60,13 @@ export default function UpdateProfile() {
     event.preventDefault();
     // Validate form fields
     const errors = {};
+    console.log({ formData });
     if (!formData.email.trim()) {
       errors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       errors.email = "Email is invalid";
     }
-    if (!formData.password.trim()) {
+    if (formData?.password && !formData.password?.trim()) {
       errors.password = "Password is required";
     }
     if (!formData.mobile.trim()) {
@@ -48,6 +78,7 @@ export default function UpdateProfile() {
 
     if (Object.keys(errors).length === 0) {
       console.log(formData); // Submit form data if no errors
+      dispatch(updateUser(formData));
     } else {
       setErrors(errors);
     }
@@ -168,7 +199,17 @@ export default function UpdateProfile() {
               <Link to={"/"}>Nearest Users</Link>
             </Grid>
             <Grid item xs={6} sx={{ display: "flex", justifyContent: "end" }}>
-              <Link to={"/login"}>Logout</Link>
+              <Button
+                variant="outlined"
+                onClick={() => {
+                  if (localStorage.getItem("token")) {
+                    localStorage.removeItem("token");
+                    navigate("/login");
+                  }
+                }}
+              >
+                Logout
+              </Button>
             </Grid>
           </Grid>
         </Box>

@@ -4,6 +4,19 @@ import path from "path";
 import bcrypt from "bcrypt";
 import fs from "fs";
 
+export async function getUser(req, res) {
+  try {
+    const userId = req.userId;
+    const user = await User.findById(userId, { password: 0 });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    return res.status(200).json({ data: user, message: "User Found" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
 export async function uploadProfilePic(req, res) {
   try {
     const updates = req.body;
