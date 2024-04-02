@@ -1,4 +1,4 @@
-# Project Name
+# MERN STACK TEST
 
 ## Description
 
