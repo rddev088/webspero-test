@@ -23,8 +23,6 @@ export default function Register() {
   const [errors, setErrors] = React.useState({});
   const [submitError, setSubmitError] = React.useState("");
 
-  console.log({ formData });
-
   const handleChange = (e) => {
     if (e.target.name === "profilePic") {
       setFormData({ ...formData, profilePic: e.target.files[0] });
@@ -53,7 +51,6 @@ export default function Register() {
     }
 
     if (Object.keys(errors).length === 0) {
-      console.log(formData); // Submit form data if no errors
       try {
         await axios.post("auth/register", formData, {
           headers: {

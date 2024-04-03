@@ -23,23 +23,29 @@ export default function NearestUsersTable({ nearestUsers = [] }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {nearestUsers.map((user, index) => (
-            <TableRow key={index}>
-              <TableCell>{user.name}</TableCell>
-              <TableCell>
-                <Avatar
-                  alt="Profile Pic"
-                  src={`${
-                    user?.profilePic
-                      ? "http://localhost:3000" + user?.profilePic
-                      : ""
-                  }`}
-                />
-              </TableCell>
-              <TableCell>{user.email}</TableCell>
-              <TableCell>{user.phone}</TableCell>
+          {nearestUsers?.length > 0 ? (
+            nearestUsers.map((user, index) => (
+              <TableRow key={index}>
+                <TableCell>{user.name}</TableCell>
+                <TableCell>
+                  <Avatar
+                    alt="Profile Pic"
+                    src={`${
+                      user?.profilePic
+                        ? import.meta.env.VITE_API_URL + user?.profilePic
+                        : ""
+                    }`}
+                  />
+                </TableCell>
+                <TableCell>{user.email}</TableCell>
+                <TableCell>{user.phone}</TableCell>
+              </TableRow>
+            ))
+          ) : (
+            <TableRow>
+              <TableCell colSpan={4}>No Record found</TableCell>
             </TableRow>
-          ))}
+          )}
         </TableBody>
       </Table>
     </TableContainer>

@@ -1,0 +1,258 @@
+{
+	"info": {
+		"_postman_id": "7c9c9855-aaf2-4687-90c6-c307a633694d",
+		"name": "Webspero",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21732909"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "rajat",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "rajat@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456eE@",
+									"type": "text"
+								},
+								{
+									"key": "zipCode",
+									"value": "123422",
+									"type": "text"
+								},
+								{
+									"key": "mobile",
+									"value": "9253221717",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "1234567896543",
+									"type": "text"
+								},
+								{
+									"key": "profilePic",
+									"type": "file",
+									"src": "/C:/Users/Rajat Dhiman/Downloads/peakpx.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "rajat@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456eE@",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Seed Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjBjNTM0OGY4OTdhYWFjZDIyYmNlNjUiLCJpYXQiOjE3MTIwODM4MjQsImV4cCI6MTcxMjA4NzQyNH0.-2IgQjYLf46dGzXHWEvOyqlD2k9uuRXcbDWvWSAGnbU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/user/seed-users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"seed-users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Nearest",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjBjNTM0OGY4OTdhYWFjZDIyYmNlNjUiLCJpYXQiOjE3MTIwODM4MjQsImV4cCI6MTcxMjA4NzQyNH0.-2IgQjYLf46dGzXHWEvOyqlD2k9uuRXcbDWvWSAGnbU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/user/find-nearest-users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"find-nearest-users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Profile Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjBjNTM0OGY4OTdhYWFjZDIyYmNlNjUiLCJpYXQiOjE3MTIwODM4MjQsImV4cCI6MTcxMjA4NzQyNH0.-2IgQjYLf46dGzXHWEvOyqlD2k9uuRXcbDWvWSAGnbU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Rajat Dhiman",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "rajat@gmail.com",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "zipCode",
+									"value": "123444444",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "mobile",
+									"value": "1234567",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "phone",
+									"value": "3333",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "profilePic",
+									"type": "file",
+									"src": "/C:/Users/Rajat Dhiman/Downloads/peakpx.jpg",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/update-profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"update-profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

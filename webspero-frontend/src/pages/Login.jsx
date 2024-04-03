@@ -46,7 +46,6 @@ export default function Login() {
     }
 
     if (Object.keys(errors).length === 0) {
-      console.log({ formData });
       dispatch(loginUser(formData));
     } else {
       setErrors(errors);

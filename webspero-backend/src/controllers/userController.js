@@ -3,6 +3,7 @@ import { getPublicFolderPath } from "../utils/helper.js";
 import path from "path";
 import bcrypt from "bcrypt";
 import fs from "fs";
+import mongoose from "mongoose";
 
 export async function getUser(req, res) {
   try {
@@ -63,18 +64,31 @@ export async function uploadProfilePic(req, res) {
 }
 
 export async function insertDummyData(req, res) {
+  const randomCoordinates = [
+    [76.748704, 30.719059],
+    [76.751912, 30.717887],
+    [76.745632, 30.720345],
+    [76.752509, 30.718451],
+    [76.746973, 30.719886],
+  ];
+
   // Create an array of 20 user objects
-  const users = Array.from({ length: 20 }, (_, index) => ({
-    name: `User ${index + 1}`,
-    email: `user${index + 1}@example.com`,
-    password: "password123",
-    mobile: "1234567890",
-    zipCode: "12345",
-    location: {
-      type: "Point",
-      coordinates: [76.748704, 30.719059], // Default coordinates
-    },
-  }));
+  const users = Array.from({ length: 20 }, (_, index) => {
+    const randomIndex = Math.floor(Math.random() * randomCoordinates.length);
+    const [longitude, latitude] = randomCoordinates[randomIndex];
+
+    return {
+      name: `User ${index + 1}`,
+      email: `user${index + 1}@example.com`,
+      password: "password123",
+      mobile: "1234567890",
+      zipCode: "12345",
+      location: {
+        type: "Point",
+        coordinates: [longitude, latitude], // Assign random coordinates
+      },
+    };
+  });
 
   // Insert the users into the database
   User.insertMany(users)
@@ -107,7 +121,12 @@ export async function findNearest(req, res) {
           },
           distanceField: "distance",
           spherical: true,
-          maxDistance: 100000, // Maximum distance in meters
+          maxDistance: 10000, // Maximum distance in meters
+        },
+      },
+      {
+        $match: {
+          email: { $ne: user.email }, // Exclude the logged-in user
         },
       },
       {

@@ -23,7 +23,7 @@ export async function register(req, res) {
         coordinates: [76.748704, 30.719059], // default longitude, latitude (sector 43)
       },
     });
-    console.log(req.files);
+
     if (req.files && Object.keys(req.files).length != 0) {
       const { profilePic } = req.files;
 

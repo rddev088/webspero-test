@@ -60,7 +60,6 @@ export default function UpdateProfile() {
     event.preventDefault();
     // Validate form fields
     const errors = {};
-    console.log({ formData });
     if (!formData.email.trim()) {
       errors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
@@ -77,7 +76,6 @@ export default function UpdateProfile() {
     }
 
     if (Object.keys(errors).length === 0) {
-      console.log(formData); // Submit form data if no errors
       dispatch(updateUser(formData));
     } else {
       setErrors(errors);

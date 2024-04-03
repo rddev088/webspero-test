@@ -25,7 +25,6 @@ export const findNearestUsers = createAsyncThunk(
 export const getUser = createAsyncThunk("user/getUser", async (_, thunkAPI) => {
   try {
     const response = await axios.get("user/get-user");
-    console.log(response.data);
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response.data);
@@ -41,7 +40,6 @@ export const updateUser = createAsyncThunk(
           "Content-Type": "multipart/form-datas",
         },
       });
-      console.log(response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);

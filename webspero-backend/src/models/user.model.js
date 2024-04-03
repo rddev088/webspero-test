@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+const Schema = mongoose.Schema;
 
 const userSchema = new mongoose.Schema({
   name: { type: String },
@@ -12,10 +13,11 @@ const userSchema = new mongoose.Schema({
     type: {
       type: String,
       enum: ["Point"],
+      default: "Point", // Set default type to 'Point'
     },
     coordinates: {
-      type: [Number],
-      default: [76.748704, 30.719059], // Default value for coordinates sector 43
+      type: [Schema.Types.Double],
+      default: [0.0, 0.0],
     },
   },
 });

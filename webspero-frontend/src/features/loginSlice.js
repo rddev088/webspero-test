@@ -12,7 +12,7 @@ export const loginUser = createAsyncThunk(
       };
       const response = await axios.post("auth/login", params);
       let data = await response.data;
-      console.log({ response });
+
       if (response.status === 200) {
         localStorage.setItem("token", data.token);
         return data;
