@@ -85,7 +85,7 @@ export async function insertDummyData(req, res) {
       zipCode: "12345",
       location: {
         type: "Point",
-        coordinates: [longitude, latitude], // Assign random coordinates
+        coordinates: index < 6 ? [longitude, latitude] : [0.0, 0.0], // Assign random coordinates
       },
     };
   });
@@ -121,7 +121,7 @@ export async function findNearest(req, res) {
           },
           distanceField: "distance",
           spherical: true,
-          maxDistance: 10000, // Maximum distance in meters
+          maxDistance: 100000, // Maximum distance in meters
         },
       },
       {
